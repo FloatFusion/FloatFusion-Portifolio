@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>FloatFusion</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'DM mono', cursive;
+            scroll-behavior: smooth;
+        }
+        body{
+            background-color: #000;
+            color: #fff;
+            line-height: 1.5;
+            cursor: crosshair;
+        }
+        a{
+            cursor: crosshair;
+        }
+        :root{
+            --para: #999;
+        }
+        ::-webkit-scrollbar{
+            width: 0px;
+        }
+        ::selection{
+            background-color: #ffffff30;
+            color: #fff
+        }
+        .intro{
+            position: fixed;
+            background-color: #000;
+            z-index: 3;
+            width: 100svw;
+            height: 100svh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: outro-h6 1s 1 forwards cubic-bezier( 1, 0.01, 0.9, 1 );
+            animation-delay: 1.5s;
+        }
+        .intro h6{
+            user-select: none;
+            color: #fff;
+            font-size: 10svw;
+            letter-spacing: 80px;
+            opacity: 0;
+            animation: intro-h6 1s 1 forwards cubic-bezier( 0, 0.73, 0.19, 1.01 );
+            animation-delay: 0.3s;
+            font-family: sans-serif;
+        }
+        nav{
+            user-select: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100svw;
+            height: 7svh;
+            overflow: hidden;
+            background-image: linear-gradient(#000000ff, #00000000);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            animation: fade 1.5s ease-out forwards;
+            animation-delay: 2.5s;
+        }
+        nav .navbtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: auto;
+            margin: 0px 10svh;
+        }
+        nav .navbtn a{
+            text-decoration: none;
+            font-size: 1.6svh;
+            color: #ffffff50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0px 3svh;
+            transition: box-shadow 1s ease-out, color 1s ease-out;
+        }
+        nav .navbtn a:hover{
+            box-shadow: inset 0px -0.5svh 0px #fff;
+            transition: box-shadow 0.2s ease-out, color 0.2s ease-out;
+            color: #fff;
+        }
+        nav .logo{
+            height: 7svh;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 10svh;
+        }
+        nav .logo h1{
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5svh;
+            padding: 0px 1svh;
+            font-style: italic;
+            font-weight: 600;
+            text-decoration: underline;
+            text-transform: full-width;
+        }
+        .hero{
+            height: auto;
+            max-width: 650px;
+            margin: auto;
+            padding: 10svh 2svh;
+        }
+        .hero h6{
+            font-size: 60px;
+            line-height: 0.9;
+            font-style: italic;
+            font-family: 'Oswald', sans-serif;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 2.5s;
+        }
+        .hero p{
+            font-size: 16px;
+            margin: 4svh 0px;
+            color: var(--para);
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 2.8s;
+        }
+        .info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: auto;
+            width: 100%;
+        }
+        .info p{
+            margin: 0px 0px;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 3.1s;
+        }
+        .hero hr{
+            margin: 5svh 0svh 15svh 0svh;
+            opacity: 0.4;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 3.2s;
+        }
+        .hero .material-symbols-outlined{
+            margin: 0px 1svh;
+            transform: translateY(0.8svh);
+            font-size: 26px;
+            color: lawngreen;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 3.1s;
+        }
+        .hero #aboutme{
+            margin: 1svh 0px 10svh 0px;
+            padding-top: 5svh;
+        }
+        .hero #aboutme a{
+            color: var(--para);
+        }
+        .hero #aboutme a:hover{
+            color: #fff
+        }
+        .hero #aboutme h1{
+            font-size: 40px;
+            font-family: sans-serif;
+            font-style: italic;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 3.4s;
+        }
+        .hero #aboutme h2{
+            font-size: 25px;
+            margin: 4svh 0px 1svh 0px;
+            font-family: 'Oswald', sans-serif;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 3.7s;
+        }
+        .hero #aboutme p{
+            font-size: 16px;
+            margin: 1svh 0px;
+            padding: 0px 2svh;
+            color: var(--para);
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 4.0s;
+        }
+        
+        .hero #projects{
+            margin: 1svh 0px 10svh 0px;
+            padding-top: 5svh;
+        }
+        .hero #projects h1{
+            font-size: 40px;
+            font-family: sans-serif;
+            font-style: italic;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 4.3s;
+        }
+        .hero #projects .p-crd{
+            width: 100%;
+            height: auto;
+            border: 1px solid #ffffff20;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px;
+            transition: 0.15s;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 4.6s;
+        }
+        .hero #projects .p-crd:hover{
+            background-color: #ffffff10
+        }
+        .hero #projects .p-crd h2{
+            margin: 0px;
+            padding: 0px 0.5svh;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 4.8s;
+        }
+        .hero #projects p{
+            font-size: 16px;
+            margin: 5px 0px;
+            padding: 0px 2svh;
+            color: var(--para);
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 5.0s;
+        }
+        .hero #projects a{
+            color: var(--para);
+            font-family: sans-serif;
+            padding: 0px 2svh;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 5.2s;
+        }
+        .hero #projects a:hover{
+            color: #fff
+        }
+        
+        .hero #whyme{
+            margin: 1svh 0px 10svh 0px;
+            padding-top: 5svh;
+        }
+        .hero #whyme h1{
+            font-size: 40px;
+            font-family: sans-serif;
+            font-style: italic;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 5.5s;
+        }
+        .hero #whyme h2{
+            font-size: 25px;
+            margin: 4svh 0px 1svh 0px;
+            font-family: 'Oswald', sans-serif;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 5.8s;
+        }
+        .hero #whyme p{
+            font-size: 16px;
+            margin: 0.5svh 0px 1svh 0px;
+            padding: 0px 2svh;
+            color: var(--para);
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 6.1s;
+        }
+        
+        .hero #contact{
+            margin: 1svh 0px 10svh 0px;
+            padding-top: 5svh;
+        }
+        .hero #contact h1{
+            font-size: 40px;
+            font-family: sans-serif;
+            font-style: italic;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 6.4s;
+        }
+        .hero #contact h2{
+            font-size: 25px;
+            margin: 1svh 0px;
+            font-weight: 300;
+            font-family: 'Oswald', sans-serif;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 6.7s;
+        }
+        .hero #contact p{
+            font-size: 16px;
+            margin: 5svh 0px;
+            padding: 0px 2svh;
+            color: var(--para);
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 7.0s;
+        }
+        .hero #contact a{
+            text-decoration: none;
+            background-color: #000;
+            color: #ffffff90;
+            display: flex;
+            height: 45px;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #fff;
+            transition: 0.2s ease-out;
+            font-family: sans-serif;
+            user-select: none;
+            opacity: 0;
+            animation: fade 0.74s ease-out forwards;
+            animation-delay: 7.3s;
+        }
+        .hero #contact a:hover{
+            color: #000;
+            transform: scale(1.054);
+            background-color: #fff;
+            box-shadow: 0px 0px 50px #ffffff40;
+        }
+        .hero #contact a ion-icon{
+            margin: 0px 1svh 0px 0px;
+            font-size: 26px;
+            color: #ffffff90;
+            transition: 0.2s ease-out;
+        }
+        .hero #contact #ig-bg{
+            border-top-left-radius: 2svh;
+            border-top-right-radius: 2svh;
+        }
+        .hero #contact #yt-bg{
+            border-bottom-left-radius: 2svh;
+            border-bottom-right-radius: 2svh;
+        }
+        .hero #contact a:hover #ig{
+            color: #e1306c;
+            transition: color 0.1s ease-out;
+        }
+        .hero #contact a:hover #wa{
+            color: #4fce5d;
+            transition: color 0.1s ease-out;
+        }
+        .hero #contact a:hover #yt{
+            color: #1DA1F2;
+            transition: color 0.1s ease-out;
+        }
+        
+        
+        footer{
+            background-color: #ffffff15;
+            border-top: 0.35svh solid #fff;
+            height: auto;
+            width: 100svw;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background-image: linear-gradient(#00000000, #000000ff);
+            opacity: 0;
+            animation: glide-up 0.74s ease-out forwards;
+            animation-delay: 7.6s;
+        }
+        footer .content{
+            width: 75svw;
+            padding: 5svh 0px;
+            margin: auto;
+        }
+        footer .content h1{
+            font-family: 'Oswald', sans-serif;
+            font-size: 6svh;
+            margin: 0px 3svh;
+            font-style: italic;
+            font-weight: 600;
+            text-transform: full-width;
+            opacity: 0;
+            animation: glide-up 0.74s ease-out forwards;
+            animation-delay: 7.8s;
+        }
+        footer .content p{
+            font-size: 2svh;
+            margin: 0px 3svh;
+            opacity: 0;
+            animation: glide-up 0.74s ease-out forwards;
+            animation-delay: 8.0s;
+        }
+        footer .content hr{
+            margin: 80px 25svw;
+            opacity: 0.4;
+            opacity: 0;
+            animation: glide-up 0.74s ease-out forwards;
+            animation-delay: 8.2s;
+        }
+        footer .content span{
+            font-size: 3svh;
+            color: red;
+        }
+        footer .content #rights{
+            color: #ffffff30;
+            font-size: 1.4svh;
+            margin: 2svh 0px;
+            font-family: 'Osawald', sans-serif;
+            opacity: 0;
+            animation: glide-up 0.74s ease-out forwards;
+            animation-delay: 8.4s;
+        }
+        footer .content b{
+            font-family: sans-serif;
+        }
+        
+        @keyframes glide-up{
+            from{
+                opacity: 0;
+                transform: translateY(50px)
+            }
+            to{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        @keyframes fade{
+            to{
+                opacity: 1;
+            }
+        }
+        @keyframes intro-h6{
+            to{
+                letter-spacing: -5px;
+                scale: 1;
+                opacity: 1;
+            }
+        }
+        @keyframes outro-h6{
+            to{
+                z-index: -10;
+                opacity: 0;
+            }
+        }
+        @media (max-width: 981px){
+            nav{
+                justify-content: center;
+            }
+            nav .navbtn a{
+                font-size: 1.5svh;
+                padding: 0px 1.7svh;
+            }
+            nav .navbtn{
+                margin: 0px 1svh;
+            }
+            nav .logo{
+                display: none;
+            }
+            .hero{
+                width: 90svw;
+            }
+            .hero h6{
+                font-size: 50px;
+            }
+            .hero p{
+                font-size: 14px;
+            }
+            .hero #aboutme{
+                margin: 1svh 0px 5svh 0px
+            }
+            .hero #aboutme h1{
+                font-size: 30px;
+            }
+            .hero #aboutme h2{
+                font-size: 20px;
+            }
+            .hero #aboutme p{
+                font-size: 14px;
+            }
+            
+            .hero #projects{
+                margin: 1svh 0px 5svh 0px
+            }
+            .hero #projects h1{
+                font-size: 30px;
+            }
+            .hero #projects h2{
+                font-size: 20px;
+            }
+            .hero #projects p{
+                font-size: 14px;
+            }
+            
+            .hero #whyme{
+                margin: 1svh 0px 5svh 0px
+            }
+            .hero #whyme h1{
+                font-size: 30px;
+            }
+            .hero #whyme h2{
+                font-size: 20px;
+            }
+            .hero #whyme p{
+                font-size: 14px;
+            }
+            
+            .hero #contact{
+                margin: 1svh 0px 5svh 0px
+            }
+            .hero #contact h1{
+                font-size: 30px;
+            }
+            .hero #contact h2{
+                font-size: 20px;
+            }
+            .hero #contact p{
+                font-size: 14px;
+            }
+            
+            .hero hr{
+                margin: 2svh 0svh 0svh 0svh;
+            }
+        }
+        @media (max-width: 1500px) and (min-width: 982px){
+            nav .navbtn a{
+                padding: 0px 1svh;
+            }
+            nav .navbtn{
+                margin: 0px 1svh;                
+            }
+            nav .logo{
+                margin: 0px 1svh;                
+            }
+        }
+        
+    </style>
+</head>
+<body>
+ <div class="intro">
+     <h6>Float Fusion</h6>
+ </div>
+        <nav>
+            <div class="logo">
+               <h1>FloatFusion</h1>
+            </div>
+            <div class="navbtn">
+                <a href="#aboutme">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#whyme">Pros</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+        
+        <div class="hero">
+            <h6>Noman Ullhaq</h6>
+            <p>Front-end developer (HTML, CSS)</p>
+            <p>I'm FloatFusion, your dedicated CSS and HTML web developer hailing from the picturesque landscapes of Chitral, Pakistan.</p>
+            <div class="info">
+              <p><span class="material-symbols-outlined">location_on</span>Chitral, Pakistan</p>
+              <p><span class="material-symbols-outlined">fiber_manual_record</span>Available For Work</p>
+            </div><hr>
+            
+            <div id="aboutme">
+                <h1>About Me</h1>
+                <p>Hey everyone! My name is <span>Noman Ullhaq</span><br>
+                and I'm just diving into the world of web development. I'm passionate about creating websites that look great and work smoothly. If you have any projects you need help with or just want to chat about web development, feel free to reach out to me at <a href="#contact">Contact</a>. Excited to learn and grow together!</p>
+                <h2>Who Is Float Fusion?</h2>
+                <p>In the world of web development, I go by the name <i><b>"FloatFusion"</b></i><br>
+                I'm a digital alchemist, blending code with creativity to bring websites to life. With a passion for clean aesthetics and a talent for turning ideas into interactive experiences, I work magic with CSS and HTML.</p><hr>
+            </div>
+            
+            <div id="projects">
+                <h1>Projects</h1>
+                <div class="p-crd">
+                    <h2>ChitralRoam</h2>
+                    <p>This is the guide for tourist who wants to Visit Chitral, Pakistan. (My first project) <br>
+                    Date Started: 23 October 2023 <br> Date Finished: 16 December 2023</p>
+                    <a href="https://floatfusion.github.io/ChitralRoam/" target="_blank">Visit site > </a>
+                </div>
+                <div class="p-crd">
+                    <h2>The Golden Era</h2>
+                    <p>Unvieling the Brilliance Of the Islamic Golden Age which spans from the 7th to 13th centuries CE.<br>
+                    Date Started: 27 December 2023 <br> Date Finished: Ongoing</p>
+                    <a href="ongoing.html" target="_blank">Visit site > </a>
+                </div><hr>
+            </div>
+            
+            <div id="whyme">
+                <h1>Why Me?</h1>
+                <h2>Collaborative Spirit:</h2>
+                <p>I believe in a collaborative approach, working closely with clients to understand their vision and translating it into a digital reality.</p>
+                <h2>Attention to Detail:</h2>
+                <p>Precision is my hallmark. Every project undergoes a thorough quality check to guarantee a flawless end product.</p>
+                <h2>Innovation at Heart:</h2>
+                <p>The digital landscape is ever-evolving, and I stay at the forefront of industry trends, incorporating the latest innovations into every project.</p><hr>
+            </div>
+            
+            <div id="contact">
+                <h1>Contact</h1>
+                <p>Feel free to reach out to discuss your project or collaboration opportunities. I look forward to hearing from you!</p>
+                <h2><a target="_blank" id="ig-bg" href="https://www.instagram.com/css_and_chill/"><ion-icon id="ig" name="logo-instagram"></ion-icon>Instagram</a></h2>
+                <h2><a target="_blank" href="https://api.whatsapp.com/send?phone=03453603832"><ion-icon id="wa" name="logo-whatsapp"></ion-icon>WhatsApp</a></h2>
+                <h2><a target="_blank" id="yt-bg" href="https://twitter.com/NomanUllhaq"><ion-icon id="yt" name="logo-twitter"></ion-icon>Twitter or X</a></h2>
+                <hr>
+            </div>
+        </div>
+        
+        <footer>
+           <div class="content">
+               <h1>FloatFusion</h1>
+               <p>Thank you for stopping by FloatFusion! Your interest in my work means the world to me.</p><hr>
+               <p>Built with <span>Love</span> by <b>Noman Ullhaq</b></p>
+               <p id="rights">© 2024 - FloatFusion</p>
+           </div>
+        </footer>
+        
+</body>
+</html>
